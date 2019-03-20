@@ -1,0 +1,38 @@
+div {
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border-width: 2px;
+    border-style: solid;
+}
+
+div {
+    border-color: red;
+}
+
+div div {
+    border-color: orange;
+}
+
+div div div {
+    border-color: black; 
+}
+
+div div div div {
+    border-color: green;
+}
+
+div div div div div {
+    border-color: cyan;
+}
+
+div div div div div div {
+    border-color: blue;
+}
+
+div div div div div div div {
+    border-color: magenta;
+}
+
+.nice {
+    background-color: aquamarine;
+}
