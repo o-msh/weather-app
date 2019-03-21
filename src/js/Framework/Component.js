@@ -33,14 +33,14 @@ export default class Component {
                     return container;
                 } else {
                     const container = document.createElement(element.tag);
-                    if (element.content) {
-                        container.innerHTML = element.content;
-                    }
                     ['classList', 'attributes'].forEach(item => {
                         if (element[item] && !Array.isArray(element[item])) {
                             element[item] = [element[item]];
                         }
                     });
+                    if (element.content) {
+                        container.innerHTML = element.content;
+                    }
                     if (element.classList) {
                         container.classList.add(...element.classList);
                     }

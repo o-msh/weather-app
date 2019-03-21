@@ -6,6 +6,7 @@ export default class App extends Component {
     constructor(host) {
         super(host);
     }
+    
     render() {
         const t1 = document.createElement('div');
         new Temperature(t1, { temperature: 25, unit: 'C' });
