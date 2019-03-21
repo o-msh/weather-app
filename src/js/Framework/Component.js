@@ -7,15 +7,14 @@ export default class Component {
 
     _render() {
         this.host.innerHTML = '';
-        const content = this.render();
-        if (typeof content === 'string') {
-            this.host.innerHTML = content;
-        } else {
-            content.map(this._vDomPrototypeElementToHtmlElement)
-                .forEach(htmlElement => {
-                    this.host.appendChild(htmlElement);
-                });
+        let content = this.render();
+        if (!Array.isArray(content)) {
+            content = [content];
         }
+        content.map(item => this._vDomPrototypeElementToHtmlElement(item))
+            .forEach(htmlElement => {
+                this.host.appendChild(htmlElement);
+            });
     }
 
     render() { }
@@ -33,12 +32,12 @@ export default class Component {
                     return container;
                 } else {
                     const container = document.createElement(element.tag);
-                    ['classList', 'attributes'].forEach(item => {
+                    ['classList', 'attributes', 'children'].forEach(item => {
                         if (element[item] && !Array.isArray(element[item])) {
                             element[item] = [element[item]];
                         }
                     });
-                    if (element.content) {
+                    if (element.content !== undefined) {
                         container.innerHTML = element.content;
                     }
                     if (element.classList) {
@@ -47,6 +46,12 @@ export default class Component {
                     if (element.attributes) {
                         element.attributes.forEach(attributeSpec => {
                             container.setAttribute(attributeSpec.name, attributeSpec.value);
+                        });
+                    }
+                    if (element.children) {
+                        element.children.forEach(item => {
+                            const htmlElement = this._vDomPrototypeElementToHtmlElement(item);
+                            container.appendChild(htmlElement);
                         });
                     }
                     return container;

@@ -6,7 +6,7 @@ export default class App extends Component {
     constructor(host) {
         super(host);
     }
-    
+
     render() {
         const t1 = document.createElement('div');
         new Temperature(t1, { temperature: 25, unit: 'C' });
@@ -45,6 +45,35 @@ export default class App extends Component {
                     {
                         name: 'title',
                         value: 'Me definetely nice div',
+                    },
+                ],
+            },
+            {
+                tag: 'div',
+                attributes: [
+                    {
+                        name: 'title',
+                        value: 'I have got children',
+                    },
+                ],
+                children: [
+                    {
+                        tag: 'div',
+                        content: 'Child 1',
+                    },
+                    {
+                        tag: 'div',
+                        content: 'Child 2',
+                        children: [
+                            {
+                                tag: 'div',
+                                content: 'Child 2.1',
+                            },
+                            {
+                                tag: 'div',
+                                content: 'Child 2.2',
+                            },
+                        ],
                     },
                 ],
             },
