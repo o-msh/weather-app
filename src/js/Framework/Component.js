@@ -21,9 +21,15 @@ export default class Component {
 
     _vDomPrototypeElementToHtmlElement(element) {
         if (typeof element === 'string') {
-            const htmlElement = document.createElement('div');
-            htmlElement.innerHTML = element;
-            return htmlElement;
+            let container;
+            const containsHtmlTags = /[<>&]/.test(element);
+            if (containsHtmlTags) {
+                container = document.createElement('div');
+                container.innerHTML = element;
+            } else {
+                container = document.createTextNode(element);
+            }
+            return container;
         } else {
             if (element.tag) {
                 if (typeof element.tag === 'function') {
