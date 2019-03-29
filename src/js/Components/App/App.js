@@ -69,6 +69,7 @@ export default class App extends Component {
                                 tag: 'div',
                                 content: 'Child 2.1',
                             },
+                            '<div>i am a grand children</div>',
                             {
                                 tag: 'div',
                                 content: 'Child 2.2',

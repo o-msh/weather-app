@@ -2,8 +2,11 @@ export default class Component {
     constructor(host, props = {}) {
         this.host = host;
         this.props = props;
+        this.bindEverything();
         this._render();
     }
+
+    bindEverything() { }
 
     _render() {
         this.host.innerHTML = '';
@@ -52,6 +55,11 @@ export default class Component {
                     if (element.attributes) {
                         element.attributes.forEach(attributeSpec => {
                             container.setAttribute(attributeSpec.name, attributeSpec.value);
+                        });
+                    }
+                    if (element.eventHandlers) {
+                        Object.keys(element.eventHandlers).forEach(eventType => {
+                            container.addEventListener(eventType, element.eventHandlers[eventType]);
                         });
                     }
                     if (element.children) {
