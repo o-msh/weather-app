@@ -12,16 +12,32 @@ export default class Temperature extends Component {
     onClick(e) {
         console.log('Wow! Me clicked!', this.host);
     }
-    
+
     render() {
         return [
             this.props.temperature + '&deg;' + this.props.unit,
             {
-                tag: 'button',
-                content: 'Click me!',
-                eventHandlers: {
-                    click: this.onClick,
-                },
+                tag: 'div',
+                children: [
+                    {
+                        tag: 'div',
+                        content: 'Child 2.1',
+                    },
+                    '<div>i am a grand children</div>',
+                    {
+                        tag: 'div',
+                        content: 'Child 2.2',
+                        children: [
+                            {
+                                tag: 'button',
+                                content: 'Click Me!',
+                                eventHandlers: {
+                                    click: this.onClick,
+                                },
+                            },
+                        ],
+                    },
+                ],
             },
         ]
     }
