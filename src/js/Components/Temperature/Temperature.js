@@ -5,7 +5,7 @@ export default class Temperature extends Component {
         super(host, props);
     }
 
-    bindEverything() {
+    initHandlers() {
         this.onClick = this.onClick.bind(this);
     }
 
@@ -16,6 +16,8 @@ export default class Temperature extends Component {
     render() {
         return [
             this.props.temperature + '&deg;' + this.props.unit,
+            '<h3>this is header</h3>',
+            'this is a text node',
             {
                 tag: 'div',
                 children: [
@@ -23,17 +25,25 @@ export default class Temperature extends Component {
                         tag: 'div',
                         content: 'Child 2.1',
                     },
-                    '<div>i am a grand children</div>',
+                    '<strong>i am a grand children</strong>',
                     {
                         tag: 'div',
                         content: 'Child 2.2',
                         children: [
                             {
-                                tag: 'button',
-                                content: 'Click Me!',
-                                eventHandlers: {
-                                    click: this.onClick,
-                                },
+                                tag: 'div',
+                                children: [
+                                    {
+                                        tag: 'button',
+                                        content: 'Click Me!',
+                                        eventHandlers: [
+                                            {
+                                                type: 'click',
+                                                handler: this.onClick,
+                                            },
+                                        ],
+                                    }
+                                ]
                             },
                         ],
                     },

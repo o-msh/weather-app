@@ -8,21 +8,7 @@ export default class App extends Component {
     }
 
     render() {
-        const t1 = document.createElement('div');
-        new Temperature(t1, { temperature: 25, unit: 'C' });
-        const w1 = document.createElement('div');
-        new Wind(w1, { speed: 100500, unit: 'mph' });
         return [
-            'Temperature range',
-            t1,
-            w1,
-            {
-                tag: Wind,
-                props: {
-                    speed: 250,
-                    unit: 'mph',
-                },
-            },
             {
                 tag: Temperature,
                 props: {
@@ -31,10 +17,10 @@ export default class App extends Component {
                 },
             },
             {
-                tag: Temperature,
+                tag: Wind,
                 props: {
-                    temperature: 18,
-                    unit: 'C',
+                    speed: 250,
+                    unit: 'mph',
                 },
             },
             {
@@ -50,33 +36,7 @@ export default class App extends Component {
             },
             {
                 tag: 'div',
-                attributes: [
-                    {
-                        name: 'title',
-                        value: 'I have got children',
-                    },
-                ],
-                children: [
-                    {
-                        tag: 'div',
-                        content: 'Child 1',
-                    },
-                    {
-                        tag: 'div',
-                        content: 'Child 2',
-                        children: [
-                            {
-                                tag: 'div',
-                                content: 'Child 2.1',
-                            },
-                            '<div>i am a grand children</div>',
-                            {
-                                tag: 'div',
-                                content: 'Child 2.2',
-                            },
-                        ],
-                    },
-                ],
+                content: 'Simple div with content',
             },
         ];
     }

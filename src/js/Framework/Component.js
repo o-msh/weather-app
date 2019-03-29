@@ -2,11 +2,13 @@ export default class Component {
     constructor(host, props = {}) {
         this.host = host;
         this.props = props;
-        this.bindEverything();
+        this.initHandlers();
         this._render();
     }
 
-    bindEverything() { }
+    initHandlers() { }
+
+    render() { }
 
     _render() {
         this.host.innerHTML = '';
@@ -15,12 +17,8 @@ export default class Component {
             content = [content];
         }
         content.map(item => this._vDomPrototypeElementToHtmlElement(item))
-            .forEach(htmlElement => {
-                this.host.appendChild(htmlElement);
-            });
+            .forEach(htmlElement => this.host.appendChild(htmlElement));
     }
-
-    render() { }
 
     _vDomPrototypeElementToHtmlElement(element) {
         if (typeof element === 'string') {
@@ -41,7 +39,7 @@ export default class Component {
                     return container;
                 } else {
                     const container = document.createElement(element.tag);
-                    ['classList', 'attributes', 'children'].forEach(item => {
+                    ['classList', 'attributes', 'children', 'eventHandlers'].forEach(item => {
                         if (element[item] && !Array.isArray(element[item])) {
                             element[item] = [element[item]];
                         }
@@ -53,14 +51,10 @@ export default class Component {
                         container.classList.add(...element.classList);
                     }
                     if (element.attributes) {
-                        element.attributes.forEach(attributeSpec => {
-                            container.setAttribute(attributeSpec.name, attributeSpec.value);
-                        });
+                        element.attributes.forEach(attributeSpec => container.setAttribute(attributeSpec.name, attributeSpec.value));
                     }
                     if (element.eventHandlers) {
-                        Object.keys(element.eventHandlers).forEach(eventType => {
-                            container.addEventListener(eventType, element.eventHandlers[eventType]);
-                        });
+                        element.eventHandlers.forEach(eventHandler => container.addEventListener(eventHandler.type, eventHandler.handler));
                     }
                     if (element.children) {
                         element.children.forEach(item => {
