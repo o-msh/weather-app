@@ -1,4 +1,5 @@
 import Component from '../../Framework/Component';
+import WeatherDataService from '../../Services/WeatherDataService';
 
 export default class CurrentWeather extends Component {
     constructor(host, props) {
