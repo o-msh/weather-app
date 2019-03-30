@@ -17,7 +17,7 @@
     "devDependencies": {
         "parcel": "^1.12.2",
         "push-dir": "^0.4.1",
-        "sass": "^1.17.3",
+        "sass": "^1.17.4",
         "shx": "^0.3.2"
     }
 }

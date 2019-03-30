@@ -1,4 +1,5 @@
 import Component from '../../Framework/Component';
+import WeatherDataService from '../../Services/WeatherDataService';
 import WeatherForecastItem from '../WeatherForecastItem/';
 
 export default class WeatherForecast extends Component {
