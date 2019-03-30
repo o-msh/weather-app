@@ -1,11 +1,13 @@
 import Component from '../../Framework/Component';
 
-export default class Wind extends Component {
+export default class SearchHistory extends Component {
     constructor(host, props) {
         super(host, props);
     }
-    
+
     render() {
-        return [this.props.speed + ' ' + this.props.unit];
+        return [
+            'I am a SearchHistory component',
+        ]
     }
 }

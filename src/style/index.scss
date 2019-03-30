@@ -1,3 +1,5 @@
+@import 'normalize';
+
 div {
     padding: 0.5rem;
     margin: 0.5rem;
@@ -6,33 +8,38 @@ div {
 }
 
 div {
-    border-color: red;
+    border-color: Red;
 }
 
 div div {
-    border-color: orange;
+    border-color: Orange;
 }
 
 div div div {
-    border-color: black; 
+    border-color: Black;
 }
 
 div div div div {
-    border-color: green;
+    border-color: Green;
 }
 
 div div div div div {
-    border-color: cyan;
+    border-color: Cyan;
 }
 
 div div div div div div {
-    border-color: blue;
+    border-color: Blue;
 }
 
 div div div div div div div {
-    border-color: magenta;
+    border-color: Magenta;
 }
 
 .nice {
     background-color: aquamarine;
+}
+
+.even-nicer {
+    font-size: 2em;
+    padding: 1em;
 }
