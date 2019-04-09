@@ -5,7 +5,7 @@ export default class Counter extends Component {
         super(host, props);
     }
 
-    initHandlers() {
+    init() {
         ['increment', 'decrement'].forEach(methodName => this[methodName] = this[methodName].bind(this));
         this.state = {
             value: this.props.value * 2,
