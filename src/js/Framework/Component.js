@@ -2,11 +2,16 @@ export default class Component {
     constructor(host, props = {}) {
         this.host = host;
         this.props = props;
-        this.initHandlers();
+        this.init();
         this._render();
     }
 
-    initHandlers() { }
+    init() { }
+
+    updateState(stateDelta) {
+        this.state = Object.assign({}, this.state, stateDelta);
+        this._render();
+    }
 
     render() { }
 
