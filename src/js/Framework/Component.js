@@ -8,6 +8,11 @@ export default class Component {
 
     initHandlers() { }
 
+    updateState(stateDelta) {
+        this.state = Object.assign({}, this.state, stateDelta);
+        this._render();
+    }
+
     render() { }
 
     _render() {
