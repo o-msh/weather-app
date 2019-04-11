@@ -5,6 +5,8 @@ import WeatherForecast from '../WeatherForecast';
 import SearchHistory from '../SearchHistory';
 import FavouriteLocations from '../FavouriteLocations';
 
+import CountControls from '../CountControls';
+import PrettyNumber from '../PrettyNumber';
 import Counter from '../Counter';
 
 export default class App extends Component {
@@ -14,25 +16,21 @@ export default class App extends Component {
 
     render() {
         return [
-            Counter,
-            // SearchBar,
-            // CurrentWeather,
-            // WeatherForecast,
-            // SearchHistory,
-            // FavouriteLocations,
-        ].map(component => {
-            if (component === Counter) {
-                return {
-                    tag: component,
-                    props: {
-                        value: 5,
-                    },
-                }    
-            } else {
-                return {
-                    tag: component,
-                }
-            }
-        })
+            {
+                tag: CountControls,
+            },
+            {
+                tag: PrettyNumber,
+                props: {
+                    value: 5,
+                },
+            },
+            {
+                tag: PrettyNumber,
+                props: {
+                    value: 5,
+                },
+            },
+        ]
     }
 }
