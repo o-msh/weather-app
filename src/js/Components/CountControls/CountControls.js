@@ -4,13 +4,14 @@ import AppState from '../../Services/AppState';
 export default class CountControls extends Component {
     constructor(host, props) {
         super(host, props);
+        AppState.watch('COUNT', this.updateMyself);
     }
 
     init() {
-        ['increment', 'decrement'].forEach(methodName => this[methodName] = this[methodName].bind(this));
+        ['increment', 'decrement', 'updateMyself'].forEach(methodName => this[methodName] = this[methodName].bind(this));
         this.state = {
-            value: this.props.value * 2,
-            quantifier: 5,
+            quantifier: 3,
+            value: 3,
         }
     }
 
@@ -24,6 +25,10 @@ export default class CountControls extends Component {
         AppState.update('COUNT', {
             value: this.state.value - this.state.quantifier,
         });
+    }
+
+    updateMyself(subState) {
+        this.updateState(subState);
     }
 
     render() {

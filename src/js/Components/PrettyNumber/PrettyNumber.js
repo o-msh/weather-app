@@ -9,9 +9,7 @@ export default class PrettyNumber extends Component {
 
     init() {
         ['updateMyself'].forEach(methodName => this[methodName] = this[methodName].bind(this));
-        this.state = {
-            value: this.props.value,
-        };
+        this.state = {};
     }
 
     updateMyself(subState) {
@@ -22,7 +20,7 @@ export default class PrettyNumber extends Component {
         return [
             {
                 tag: 'div',
-                content: this.state.value,
+                content: this.state.value ? this.state.value : 'Default',
                 classList: 'even-nicer',
             },
         ]

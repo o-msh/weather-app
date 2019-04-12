@@ -12,7 +12,7 @@ class AppState {
     }
 
     update(entity, newValue) {
-        this.watchers[entity].forEach(watcher => watcher(newValue));
+        this.watchers[entity] && this.watchers[entity].forEach(watcher => watcher(newValue));
     }
 }
 

@@ -21,16 +21,10 @@ export default class App extends Component {
             },
             {
                 tag: PrettyNumber,
-                props: {
-                    value: 5,
-                },
             },
             {
                 tag: PrettyNumber,
-                props: {
-                    value: 5,
-                },
-            },
+            }
         ]
     }
 }
