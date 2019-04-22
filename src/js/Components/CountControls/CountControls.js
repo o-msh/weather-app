@@ -1,5 +1,6 @@
 import Component from '../../Framework/Component';
 import AppState from '../../Services/AppState';
+import { bindScope } from '../../utils';
 
 export default class CountControls extends Component {
     constructor(host, props) {
@@ -8,7 +9,7 @@ export default class CountControls extends Component {
     }
 
     init() {
-        ['increment', 'decrement', 'updateMyself'].forEach(methodName => this[methodName] = this[methodName].bind(this));
+        bindScope(this, ['increment', 'decrement', 'updateMyself']);
         this.state = {
             quantifier: 3,
             value: 3,
