@@ -8,9 +8,11 @@ export default class Component {
 
     init() { }
 
-    updateState(stateDelta) {
+    updateState(stateDelta, forceRender = true) {
         this.state = Object.assign({}, this.state, stateDelta);
-        this._render();
+        if (forceRender) {
+            this._render();
+        }
     }
 
     render() { }
