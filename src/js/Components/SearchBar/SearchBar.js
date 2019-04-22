@@ -1,17 +1,30 @@
 import Component from '../../Framework/Component';
+import AppState from '../../Services/AppState';
+import { bindScope } from '../../utils';
 
 export default class SearchBar extends Component {
     constructor(host, props) {
         super(host, props);
+        AppState.watch('USERINPUT', this.updateMyself);
     }
 
-    initHandlers() {
-        this.onClick = this.onClick.bind(this);
+    init() {
+        bindScope(this, ['onUserInput', 'onUserSearch', 'updateMyself']);
+        this.state = {};
     }
 
-    onClick(e) {
-        const searchInput = document.querySelector('input');
-        console.log('Wow! Me clicked!', this.host, searchInput.value);
+    onUserInput({ target }) {
+        AppState.update('USERINPUT', {
+            'city': target.value.trim(),
+        });
+    }
+
+    onUserSearch() {
+        console.log(this.state);
+    }
+
+    updateMyself(subState) {
+        this.updateState(subState, false);
     }
 
     render() {
@@ -28,14 +41,20 @@ export default class SearchBar extends Component {
                         value: 'off',
                     },
                 ],
+                eventHandlers: [
+                    {
+                        type: 'input',
+                        handler: this.onUserInput,
+                    },
+                ],
             },
             {
                 tag: 'button',
-                content: 'Search weather',
+                content: 'Search',
                 eventHandlers: [
                     {
                         type: 'click',
-                        handler: this.onClick,
+                        handler: this.onUserSearch,
                     },
                 ],
             },
