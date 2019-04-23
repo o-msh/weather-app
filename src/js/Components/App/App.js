@@ -1,5 +1,6 @@
 import Component from '../../Framework/Component';
 import SearchBar from '../SearchBar';
+import CurrentWeather from '../CurrentWeather';
 
 export default class App extends Component {
     constructor(host) {
@@ -10,6 +11,9 @@ export default class App extends Component {
         return [
             {
                 tag: SearchBar,
+            },
+            {
+                tag: CurrentWeather,
             },
         ]
     }

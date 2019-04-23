@@ -20,7 +20,7 @@ export default class SearchBar extends Component {
     }
 
     onUserSearch() {
-        console.log(this.state);
+        AppState.update('USERSEARCH', this.state);
     }
 
     updateMyself(subState) {
