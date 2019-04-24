@@ -3,16 +3,19 @@ class AppState {
         this.watchers = {};
     }
 
-    watch(entity, watcher) {
+    watch(entity, handler) {
+        if (!Array.isArray(handler)) {
+            handler = [handler];
+        }
         if (this.watchers[entity]) {
-            this.watchers[entity].push(watcher)
+            this.watchers[entity].push(...handler)
         } else {
-            this.watchers[entity] = [watcher];
+            this.watchers[entity] = handler;
         }
     }
 
     update(entity, newValue) {
-        this.watchers[entity] && this.watchers[entity].forEach(watcher => watcher(newValue));
+        this.watchers[entity] && this.watchers[entity].forEach(handler => handler(newValue));
     }
 }
 

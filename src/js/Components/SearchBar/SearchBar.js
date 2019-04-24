@@ -1,6 +1,7 @@
 import Component from '../../Framework/Component';
 import AppState from '../../Services/AppState';
 import { bindScope } from '../../utils';
+import '../../Services/WeatherDataService';
 
 export default class SearchBar extends Component {
     constructor(host, props) {
@@ -9,7 +10,7 @@ export default class SearchBar extends Component {
     }
 
     init() {
-        bindScope(this, ['onUserInput', 'onUserSearch', 'updateMyself']);
+        bindScope(this, ['onUserInput', 'onFormSubmit', 'updateMyself']);
         this.state = {};
     }
 
@@ -19,7 +20,8 @@ export default class SearchBar extends Component {
         });
     }
 
-    onUserSearch() {
+    onFormSubmit(event) {
+        event.preventDefault();
         AppState.update('USERSEARCH', this.state);
     }
 
@@ -30,34 +32,57 @@ export default class SearchBar extends Component {
     render() {
         return [
             {
-                tag: 'input',
-                attributes: [
+                tag: 'form',
+                children: [
                     {
-                        name: 'type',
-                        value: 'text',
+                        tag: 'input',
+                        attributes: [
+                            {
+                                name: 'type',
+                                value: 'text',
+                            },
+                            {
+                                name: 'placeholder',
+                                value: 'Enter city',
+                            },
+                            {
+                                name: 'required',
+                                value: 'true',
+                            },
+                            {
+                                name: 'title',
+                                value: 'Enter city',
+                            },
+                            {
+                                name: 'autocomplete',
+                                value: 'off',
+                            },
+                        ],
+                        eventHandlers: [
+                            {
+                                type: 'input',
+                                handler: this.onUserInput,
+                            },
+                        ],
                     },
                     {
-                        name: 'autocomplete',
-                        value: 'off',
+                        tag: 'button',
+                        attributes: [
+                            {
+                                name: 'type',
+                                value: 'submit',
+                            },
+                        ],
+                        content: 'Search',
                     },
                 ],
                 eventHandlers: [
                     {
-                        type: 'input',
-                        handler: this.onUserInput,
+                        type: 'submit',
+                        handler: this.onFormSubmit,
                     },
                 ],
-            },
-            {
-                tag: 'button',
-                content: 'Search',
-                eventHandlers: [
-                    {
-                        type: 'click',
-                        handler: this.onUserSearch,
-                    },
-                ],
-            },
+            }
         ]
     }
 }
