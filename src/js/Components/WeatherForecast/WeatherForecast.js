@@ -14,10 +14,14 @@ export default class WeatherForecast extends Component {
     }
 
     updateMyself(subState) {
-        console.log(subState);
+        this.updateState({ 'weatherForecast': subState });
     }
 
     render() {
-        return '';
+        if (this.state.weatherForecast) {
+            return [];
+        } else {
+            return [];
+        }
     }
 }

@@ -15,9 +15,13 @@ class WeatherDataService {
             if (!response.ok) {
                 throw new Error(response.statusText);
             }
-            return await response.json();
+            const responseData = await response.json();
+            if (Number(responseData.cod) !== 200) {
+                throw new Error(`Server error. Try later.`);
+            }
+            return responseData;
         } catch (error) {
-            console.log(error.message);
+            console.log('Catched error:', error.message);
         }
     }
 

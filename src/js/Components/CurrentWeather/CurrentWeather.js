@@ -14,10 +14,19 @@ export default class CurrentWeather extends Component {
     }
 
     updateMyself(subState) {
-        console.log(subState);
+        this.updateState({ 'currentWeather': subState });
     }
 
     render() {
-        return '';
+        if (this.state.currentWeather) {
+            const { currentWeather } = this.state;
+            console.log(currentWeather);
+            return [
+                `${currentWeather.name}, ${currentWeather.sys.country}`,
+                `<div>${currentWeather.main.temp.toFixed(1)} &#8451;</div>`,
+            ];
+        } else {
+            return [];
+        }
     }
 }
