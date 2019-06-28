@@ -1,11 +1,12 @@
 import Component from '../../Framework/Component';
 import AppState from '../../Services/AppState';
-import { bindScope } from '../../utils';
+import { bindScope, debounce } from '../../utils';
 import '../../Services/WeatherDataService';
 
 export default class SearchBar extends Component {
     constructor(host, props) {
         super(host, props);
+        this.updateMyself = debounce(this.updateMyself, 500);
         AppState.watch('USERINPUT', this.updateMyself);
     }
 
@@ -82,7 +83,7 @@ export default class SearchBar extends Component {
                         handler: this.onFormSubmit,
                     },
                 ],
-            }
-        ]
+            },
+        ];
     }
 }
