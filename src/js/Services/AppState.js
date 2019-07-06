@@ -8,7 +8,7 @@ class AppState {
             handler = [handler];
         }
         if (this.watchers[entity]) {
-            this.watchers[entity].push(...handler)
+            this.watchers[entity].push(...handler);
         } else {
             this.watchers[entity] = handler;
         }
