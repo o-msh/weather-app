@@ -19,6 +19,7 @@ export default class WeatherForecast extends Component {
 
     render() {
         if (this.state.weatherForecast) {
+            const { weatherForecast } = this.state;
             return [];
         } else {
             return [];

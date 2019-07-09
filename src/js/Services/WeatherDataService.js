@@ -9,9 +9,9 @@ class WeatherDataService {
         AppState.watch('USERSEARCH', [this.getCurrentWeather, this.getWeatherForecast]);
     }
 
-    async fetchData(props) {
+    async fetchData(state, props) {
         try {
-            const response = await fetch(`${this.url}${props.type}?q=${props.city}&units=${props.unit || 'metric'}&appid=${this.apiKey}`);
+            const response = await fetch(`${this.url}${props.type}?q=${state.city}&units=${props.unit || 'metric'}&appid=${this.apiKey}`);
             if (!response.ok) {
                 throw new Error(response.statusText);
             }
@@ -25,15 +25,13 @@ class WeatherDataService {
         }
     }
 
-    getCurrentWeather(props) {
-        props.type = 'weather';
-        this.fetchData(props)
+    getCurrentWeather(state) {
+        this.fetchData(state, { type: 'weather' })
             .then(response => AppState.update('CURRENTWEATHER', response));
     }
 
-    getWeatherForecast(props) {
-        props.type = 'forecast';
-        this.fetchData(props)
+    getWeatherForecast(state) {
+        this.fetchData(state, { type: 'forecast' })
             .then(response => AppState.update('WEATHERFORECAST', response));
     }
 }
