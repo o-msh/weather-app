@@ -17,9 +17,12 @@ export default class SearchBar extends Component {
     }
 
     onUserInput({ target }) {
-        AppState.update('USERINPUT', {
-            'city': target.value.trim(),
-        });
+        const value = target.value.trim();
+        if (value.length > 0) {
+            AppState.update('USERINPUT', {
+                'city': target.value.trim(),
+            });
+        }
     }
 
     onFormSubmit(event) {
@@ -29,7 +32,7 @@ export default class SearchBar extends Component {
 
     updateMyself(subState) {
         this.updateState(subState, false);
-        AppState.update('AUTOCOMPLETEINPUT', this.state);
+        AppState.update('AUTOCOMPLETESEARCH', this.state.city);
     }
 
     render() {
@@ -73,6 +76,16 @@ export default class SearchBar extends Component {
                                     {
                                         type: 'input',
                                         handler: this.onUserInput,
+                                    },
+                                ],
+                            },
+                            {
+                                tag: 'div',
+                                classList: ['autocomplete__icon-container'],
+                                children: [
+                                    {
+                                        tag: 'i',
+                                        classList: ['loader'],
                                     },
                                 ],
                             },

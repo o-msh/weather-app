@@ -6,7 +6,7 @@ import '../../Services/WeatherDataService';
 export default class AutoComplete extends Component {
     constructor(host, props) {
         super(host, props);
-        AppState.watch('AUTOCOMPLETEINPUT', this.updateMyself);
+        AppState.watch('AUTOCOMPLETELIST', this.updateMyself);
     }
 
     init() {
@@ -14,8 +14,10 @@ export default class AutoComplete extends Component {
         this.state = {};
     }
 
-    updateMyself(subState) {
-        console.log(subState);
+    updateMyself({ data }) {
+        this.updateState({
+            autoCompleteList: data,
+        });
     }
 
     render() {
