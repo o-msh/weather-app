@@ -32,22 +32,29 @@ class WeatherDataService {
 
     getCurrentWeather(state) {
         this.fetchData({
-            url: `${this.apiConfigs.weather.url}weather?q=${state.city}&units=${state.unit ||
-                'metric'}&appid=${this.apiConfigs.weather.apiKey}`,
+            url: `${this.apiConfigs.weather.url}weather?q=${state.city}&units=${state.unit || 'metric'}&appid=${
+                this.apiConfigs.weather.apiKey
+            }`,
         }).then(response => AppState.update('CURRENTWEATHER', response));
     }
 
     getWeatherForecast(state) {
         this.fetchData({
-            url: `${this.apiConfigs.weather.url}forecast?q=${state.city}&units=${state.unit ||
-                'metric'}&appid=${this.apiConfigs.weather.apiKey}`,
+            url: `${this.apiConfigs.weather.url}forecast?q=${state.city}&units=${state.unit || 'metric'}&appid=${
+                this.apiConfigs.weather.apiKey
+            }`,
         }).then(response => AppState.update('WEATHERFORECAST', response));
     }
 
     getCities(city) {
         this.fetchData({
             url: `${this.apiConfigs.cities.url}${city}`,
-        }).then(response => AppState.update('AUTOCOMPLETELIST', response));
+        }).then(response => {
+            AppState.update('LOADERSPINNERTOGGLE', {
+                showLoader: false,
+            });
+            AppState.update('AUTOCOMPLETELIST', response);
+        });
     }
 }
 

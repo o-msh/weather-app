@@ -1,5 +1,6 @@
 import Component from '../../Framework/Component';
 import AutoComplete from '../AutoComplete';
+import LoaderSpinner from '../LoaderSpinner';
 import AppState from '../../Services/AppState';
 import { bindScope, debounce } from '../../utils';
 import '../../Services/WeatherDataService';
@@ -20,7 +21,7 @@ export default class SearchBar extends Component {
         const value = target.value.trim();
         if (value.length > 0) {
             AppState.update('USERINPUT', {
-                'city': target.value.trim(),
+                city: target.value.trim(),
             });
         }
     }
@@ -32,6 +33,9 @@ export default class SearchBar extends Component {
 
     updateMyself(subState) {
         this.updateState(subState, false);
+        AppState.update('LOADERSPINNERTOGGLE', {
+            showLoader: true,
+        });
         AppState.update('AUTOCOMPLETESEARCH', this.state.city);
     }
 
@@ -39,7 +43,7 @@ export default class SearchBar extends Component {
         return [
             {
                 tag: 'form',
-                classList: ['search-bar'],
+                classList: 'search-bar',
                 attributes: [
                     {
                         name: 'autocomplete',
@@ -49,11 +53,11 @@ export default class SearchBar extends Component {
                 children: [
                     {
                         tag: 'div',
-                        classList: ['autocomplete'],
+                        classList: 'autocomplete',
                         children: [
                             {
                                 tag: 'input',
-                                classList: ['autocomplete__input'],
+                                classList: 'autocomplete__input',
                                 attributes: [
                                     {
                                         name: 'type',
@@ -80,18 +84,11 @@ export default class SearchBar extends Component {
                                 ],
                             },
                             {
-                                tag: 'div',
-                                classList: ['autocomplete__icon-container'],
-                                children: [
-                                    {
-                                        tag: 'i',
-                                        classList: ['loader'],
-                                    },
-                                ],
+                                tag: LoaderSpinner,
                             },
                             {
                                 tag: 'div',
-                                classList: ['autocomplete__list'],
+                                classList: 'autocomplete__list',
                                 children: [
                                     {
                                         tag: AutoComplete,

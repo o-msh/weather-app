@@ -1,5 +1,86 @@
-.search-bar {
-    margin: 10px;
+.autocomplete {
+    position: relative;
+    display: inline-block;
 }
 
-@import './AutoComplete';
+.autocomplete__input {
+    padding: 10px;
+}
+
+.autocomplete__list {
+    position: absolute;
+    border: 1px solid #d4d4d4;
+    border-bottom: none;
+    border-top: none;
+    z-index: 99;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.autocomplete__item {
+    padding: 10px;
+    cursor: pointer;
+    background-color: #fff;
+    border-bottom: 1px solid #d4d4d4;
+}
+
+.autocomplete__item:hover {
+    background-color: #e9e9e9;
+}
+
+.autocomplete__icon-container {
+    position: absolute;
+    right: 10px;
+    top: calc(50% - 10px);
+}
+
+.autocomplete__icon-container_visible_true {
+    display: block;
+}
+
+.autocomplete__icon-container_visible_false {
+    display: none;
+}
+
+.loader {
+    position: relative;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    animation: around 5.4s infinite;
+}
+
+@keyframes around {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader::after,
+.loader::before {
+    content: '';
+    background: white;
+    position: absolute;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border-width: 2px;
+    border-color: #333 #333 transparent transparent;
+    border-style: solid;
+    border-radius: 20px;
+    box-sizing: border-box;
+    top: 0;
+    left: 0;
+    animation: around 0.7s ease-in-out infinite;
+}
+
+.loader::after {
+    animation: around 0.7s ease-in-out 0.1s infinite;
+    background: transparent;
+}
