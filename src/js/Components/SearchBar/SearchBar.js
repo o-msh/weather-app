@@ -8,22 +8,21 @@ import '../../Services/WeatherDataService';
 export default class SearchBar extends Component {
     constructor(host, props) {
         super(host, props);
-        this.updateMyself = debounce(this.updateMyself, 1000);
+        this.updateMyself = debounce(this.updateMyself, 500);
         AppState.watch('USERINPUT', this.updateMyself);
+        AppState.watch('SELECTEDCITY', this.onSelectedCity);
     }
 
     init() {
-        bindScope(this, ['onUserInput', 'onFormSubmit', 'updateMyself', 'onAutoCompleteClick']);
+        bindScope(this, ['onUserInput', 'onFormSubmit', 'updateMyself', 'onAutoCompleteClick', 'onSelectedCity']);
         this.state = {};
     }
 
     onUserInput({ target }) {
         const value = target.value.trim();
-        if (value.length > 0) {
-            AppState.update('USERINPUT', {
-                city: target.value.trim(),
-            });
-        }
+        AppState.update('USERINPUT', {
+            city: target.value.trim(),
+        });
     }
 
     onFormSubmit(event) {
@@ -31,11 +30,13 @@ export default class SearchBar extends Component {
         AppState.update('USERSEARCH', this.state);
     }
 
+    onSelectedCity(city) {
+        this.host.querySelector('.autocomplete__input').value = city;
+        this.updateState({ city }, false);
+    }
+
     updateMyself(subState) {
         this.updateState(subState, false);
-        AppState.update('LOADERSPINNERTOGGLE', {
-            showLoader: true,
-        });
         AppState.update('AUTOCOMPLETESEARCH', this.state.city);
     }
 

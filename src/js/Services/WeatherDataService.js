@@ -47,14 +47,21 @@ class WeatherDataService {
     }
 
     getCities(city) {
-        this.fetchData({
-            url: `${this.apiConfigs.cities.url}${city}`,
-        }).then(response => {
+        if (city.length > 0) {
             AppState.update('LOADERSPINNERTOGGLE', {
-                showLoader: false,
+                showLoader: true,
             });
-            AppState.update('AUTOCOMPLETELIST', response);
-        });
+            this.fetchData({
+                url: `${this.apiConfigs.cities.url}${city}`,
+            }).then(response => {
+                AppState.update('LOADERSPINNERTOGGLE', {
+                    showLoader: false,
+                });
+                AppState.update('AUTOCOMPLETELIST', response);
+            });
+        } else {
+            AppState.update('AUTOCOMPLETELIST', []);
+        }
     }
 }
 

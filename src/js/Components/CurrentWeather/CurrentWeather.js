@@ -14,7 +14,7 @@ export default class CurrentWeather extends Component {
     }
 
     updateMyself(subState) {
-        this.updateState({ 'currentWeather': subState });
+        this.updateState({ currentWeather: subState });
     }
 
     render() {
@@ -24,8 +24,7 @@ export default class CurrentWeather extends Component {
                 `${currentWeather.name}, ${currentWeather.sys.country}`,
                 `<div>${currentWeather.main.temp.toFixed(1)} &#8451;</div>`,
             ];
-        } else {
-            return [];
         }
+        return [];
     }
 }
