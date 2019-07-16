@@ -1,6 +1,7 @@
 import Component from '../../Framework/Component';
 import AutoComplete from '../AutoComplete';
 import LoaderSpinner from '../LoaderSpinner';
+import SearchButton from '../SearchButton';
 import AppState from '../../Services/AppState';
 import { bindScope, debounce } from '../../utils';
 import '../../Services/WeatherDataService';
@@ -14,12 +15,12 @@ export default class SearchBar extends Component {
     }
 
     init() {
-        bindScope(this, ['onUserInput', 'onFormSubmit', 'updateMyself', 'onAutoCompleteClick', 'onSelectedCity']);
+        bindScope(this, ['onUserInput', 'onFormSubmit', 'onSelectedCity', 'updateMyself']);
         this.state = {};
     }
 
     onUserInput({ target }) {
-        const value = target.value.trim();
+        AppState.update('CHANGESEARCHALLOW', { allowSearch: false });
         AppState.update('USERINPUT', {
             city: target.value.trim(),
         });
@@ -31,8 +32,7 @@ export default class SearchBar extends Component {
     }
 
     onSelectedCity(city) {
-        this.host.querySelector('.autocomplete__input').value = city;
-        this.updateState({ city }, false);
+        this.updateState({ city });
     }
 
     updateMyself(subState) {
@@ -76,6 +76,10 @@ export default class SearchBar extends Component {
                                         name: 'title',
                                         value: 'Enter city',
                                     },
+                                    {
+                                        name: 'value',
+                                        value: this.state.city || '',
+                                    },
                                 ],
                                 eventHandlers: [
                                     {
@@ -99,14 +103,7 @@ export default class SearchBar extends Component {
                         ],
                     },
                     {
-                        tag: 'button',
-                        attributes: [
-                            {
-                                name: 'type',
-                                value: 'submit',
-                            },
-                        ],
-                        content: 'Search',
+                        tag: SearchButton,
                     },
                 ],
                 eventHandlers: [

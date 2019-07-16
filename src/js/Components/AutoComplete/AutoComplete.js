@@ -17,6 +17,7 @@ export default class AutoComplete extends Component {
     clickToCity({ target }) {
         AppState.update('AUTOCOMPLETELIST', []);
         AppState.update('SELECTEDCITY', target.innerHTML);
+        AppState.update('CHANGESEARCHALLOW', { allowSearch: true });
     }
 
     updateMyself({ data }) {
