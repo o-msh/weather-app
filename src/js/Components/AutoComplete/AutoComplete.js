@@ -10,8 +10,13 @@ export default class AutoComplete extends Component {
     }
 
     init() {
-        bindScope(this, ['updateMyself']);
+        bindScope(this, ['updateMyself', 'selectCity']);
         this.state = {};
+    }
+
+    clickToCity({ target }) {
+        AppState.update('AUTOCOMPLETELIST', []);
+        AppState.update('SELECTEDCITY', target.innerHTML);
     }
 
     updateMyself({ data }) {
@@ -26,6 +31,12 @@ export default class AutoComplete extends Component {
                   tag: 'div',
                   classList: ['autocomplete__item'],
                   content: autoCompleteItem.name,
+                  eventHandlers: [
+                      {
+                          type: 'click',
+                          handler: this.clickToCity,
+                      },
+                  ],
               }))
             : '';
     }
