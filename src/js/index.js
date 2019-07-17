@@ -1,5 +1,5 @@
 import 'babel-polyfill';
-import '../style';
+import '../sass'
 import App from './Components/App';
 
 new App(document.querySelector('.app'));

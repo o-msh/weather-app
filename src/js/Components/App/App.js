@@ -16,9 +16,9 @@ export default class App extends Component {
             {
                 tag: CurrentWeather,
             },
-            {
-                tag: WeatherForecast,
-            },
+            // {
+            //     tag: WeatherForecast,
+            // },
         ]
     }
 }

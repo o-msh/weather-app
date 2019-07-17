@@ -47,7 +47,6 @@ class WeatherDataService {
     }
 
     getCities(city) {
-        // AppState.update('CHANGESEARCHALLOW', { allowSearch: false });
         if (city.length > 2) {
             AppState.update('LOADERSPINNERTOGGLE', {
                 showLoader: true,

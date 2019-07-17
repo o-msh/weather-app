@@ -1,7 +1,29 @@
+@import './CurrentWeather';
+
 .search-bar {
+    padding-top: 15px;
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: center;
+}
+
+.search-bar__button {
+    padding: 13px 25px;
+    margin-left: 5px;
+    border: none;
+    border-radius: 5px;
+    background-color: darkcyan;
+    color: #f8faff;
+    cursor: pointer;
+    font-size: 14px;
+    outline: none;
+}
+
+.search-bar__button:disabled {
+    cursor: not-allowed;
+    opacity: 0.4;
+    text-decoration: line-through;
 }
 
 .autocomplete {
@@ -11,6 +33,12 @@
 
 .autocomplete__input {
     padding: 10px;
+    border-radius: 5px;
+    border: 2px solid darkcyan;
+}
+
+.autocomplete__input:focus {
+    outline: none;
 }
 
 .autocomplete__list {

@@ -21,28 +21,64 @@ export default class CurrentWeather extends Component {
         if (this.state.currentWeather) {
             const { currentWeather } = this.state;
             return [
-                `${currentWeather.name}, ${currentWeather.sys.country}`,
-                `<div>${currentWeather.main.temp.toFixed(1)} &#8451;</div>`,
                 {
-                    tag: 'ul',
-                    children: currentWeather.weather.map(weather => ({
-                        tag: 'li',
-                        children: [
-                            {
-                                tag: 'img',
-                                attributes: [
+                    tag: 'div',
+                    classList: 'current-weather',
+                    children: [
+                        {
+                            tag: 'div',
+                            classList: ['current-weather__main-list', 'main-list'],
+                            children: [
+                                {
+                                    tag: 'div',
+                                    attributes: [
+                                        {
+                                            name: 'title',
+                                            value: 'Temperature',
+                                        },
+                                    ],
+                                    classList: 'main-list__item',
+                                    content: `<i class="fas fa-thermometer-full"></i> ${currentWeather.main.temp.toFixed(
+                                        1,
+                                    )} &#8451;`,
+                                },
+                                {
+                                    tag: 'div',
+                                    attributes: [
+                                        {
+                                            name: 'title',
+                                            value: 'humidity',
+                                        },
+                                    ],
+                                    classList: 'main-list__item',
+                                    content: `<i class="fas fa-water"></i> ${currentWeather.main.humidity} %`,
+                                },
+                            ],
+                        },
+                        {
+                            tag: 'div',
+                            classList: 'current-weather__weather-list',
+                            children: currentWeather.weather.map(weather => ({
+                                tag: 'div',
+                                classList: 'current-weather__weather-item',
+                                children: [
                                     {
-                                        name: 'src',
-                                        value: `http://openweathermap.org/img/wn/${weather.icon}@2x.png`,
+                                        tag: 'img',
+                                        attributes: [
+                                            {
+                                                name: 'src',
+                                                value: `http://openweathermap.org/img/wn/${weather.icon}@2x.png`,
+                                            },
+                                        ],
+                                    },
+                                    {
+                                        tag: 'div',
+                                        content: weather.description,
                                     },
                                 ],
-                            },
-                            {
-                                tag: 'div',
-                                content: weather.description,
-                            },
-                        ],
-                    })),
+                            })),
+                        },
+                    ],
                 },
             ];
         }

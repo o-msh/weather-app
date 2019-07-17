@@ -2150,6 +2150,11 @@ fill-range@^4.0.0:
     repeat-string "^1.6.1"
     to-regex-range "^2.1.0"
 
+font-awesome.css@^4.7.2:
+  version "4.7.2"
+  resolved "https://registry.yarnpkg.com/font-awesome.css/-/font-awesome.css-4.7.2.tgz#075a42011428f2027254ef69860c757ab816c952"
+  integrity sha1-B1pCARQo8gJyVO9phgx1ergWyVI=
+
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"

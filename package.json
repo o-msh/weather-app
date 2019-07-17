@@ -22,6 +22,7 @@
         "shx": "^0.3.2"
     },
     "dependencies": {
-        "core-js": "3"
+        "core-js": "3",
+        "font-awesome.css": "^4.7.2"
     }
 }

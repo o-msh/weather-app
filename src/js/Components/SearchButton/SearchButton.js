@@ -21,10 +21,15 @@ export default class SearchButton extends Component {
         return [
             {
                 tag: 'button',
+                classList: 'search-bar__button',
                 attributes: [
                     {
                         name: 'type',
                         value: 'submit',
+                    },
+                    {
+                        name: 'title',
+                        value: 'Choose a city from list before clicking',
                     },
                     {
                         name: this.state.allowSearch === true ? 'undisabled' : 'disabled',
