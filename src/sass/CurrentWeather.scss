@@ -1,16 +1,44 @@
 .current-weather {
     display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+.current-weather__container {
+    display: flex;
     flex-direction: column;
+    text-align: center;
+    border: 1px solid #c9d0e1;
+    border-radius: 20px;
+    width: 40%;
+    background-color: rgb(247, 250, 253);
+    color: rgb(117, 120, 131);
+    font-weight: 600;
+}
+
+.current-weather__title {
+    margin-top: 15px;
+    font-weight: 700;
 }
 
 .main-list {
     display: flex;
     justify-content: center;
-    padding-top: 15px;
 }
 
 .main-list__item {
     padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.main-list__item > div {
+    margin: 5px;
+}
+
+.weather-icon {
+    width: 30px;
 }
 
 .current-weather__weather-list {
@@ -22,5 +50,6 @@
     padding: 15px;
     margin: 15px;
     border-radius: 10%;
-    border: 1px solid cadetblue;
+    background-color: #dadde9;
+    text-align: center;
 }

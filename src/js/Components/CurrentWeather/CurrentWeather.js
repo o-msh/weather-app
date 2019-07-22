@@ -1,6 +1,10 @@
 import Component from '../../Framework/Component';
 import AppState from '../../Services/AppState';
 import { bindScope } from '../../utils';
+import humidityIcon from '../../../img/humidity.svg';
+import pressureIcon from '../../../img/pressure.svg';
+import temperatureIcon from '../../../img/temperature.svg';
+import cloudsIcon from '../../../img/clouds.svg';
 
 export default class CurrentWeather extends Component {
     constructor(host, props) {
@@ -27,56 +31,169 @@ export default class CurrentWeather extends Component {
                     children: [
                         {
                             tag: 'div',
-                            classList: ['current-weather__main-list', 'main-list'],
+                            classList: 'current-weather__container',
                             children: [
                                 {
                                     tag: 'div',
-                                    attributes: [
-                                        {
-                                            name: 'title',
-                                            value: 'Temperature',
-                                        },
-                                    ],
-                                    classList: 'main-list__item',
-                                    content: `<i class="fas fa-thermometer-full"></i> ${currentWeather.main.temp.toFixed(
-                                        1,
-                                    )} &#8451;`,
+                                    classList: 'current-weather__title',
+                                    content: 'Current Weather:',
                                 },
                                 {
                                     tag: 'div',
-                                    attributes: [
+                                    classList: ['current-weather__main-list', 'main-list'],
+                                    children: [
                                         {
-                                            name: 'title',
-                                            value: 'humidity',
+                                            tag: 'div',
+                                            attributes: [
+                                                {
+                                                    name: 'title',
+                                                    value: 'Temperature',
+                                                },
+                                            ],
+                                            classList: 'main-list__item',
+                                            children: [
+                                                {
+                                                    tag: 'div',
+                                                    children: [
+                                                        {
+                                                            tag: 'img',
+                                                            classList: 'weather-icon',
+                                                            attributes: [
+                                                                {
+                                                                    name: 'src',
+                                                                    value: temperatureIcon,
+                                                                },
+                                                            ],
+                                                        },
+                                                    ],
+                                                },
+                                                {
+                                                    tag: 'div',
+                                                    content: `${currentWeather.main.temp.toFixed(1)} &#8451;`,
+                                                },
+                                            ],
+                                        },
+                                        {
+                                            tag: 'div',
+                                            attributes: [
+                                                {
+                                                    name: 'title',
+                                                    value: 'Humidity',
+                                                },
+                                            ],
+                                            classList: 'main-list__item',
+                                            children: [
+                                                {
+                                                    tag: 'div',
+                                                    children: [
+                                                        {
+                                                            tag: 'img',
+                                                            classList: 'weather-icon',
+                                                            attributes: [
+                                                                {
+                                                                    name: 'src',
+                                                                    value: humidityIcon,
+                                                                },
+                                                            ],
+                                                        },
+                                                    ],
+                                                },
+                                                {
+                                                    tag: 'div',
+                                                    content: `${currentWeather.main.humidity} %`,
+                                                },
+                                            ],
+                                        },
+                                        {
+                                            tag: 'div',
+                                            attributes: [
+                                                {
+                                                    name: 'title',
+                                                    value: 'Atmosphere pressure',
+                                                },
+                                            ],
+                                            classList: 'main-list__item',
+                                            children: [
+                                                {
+                                                    tag: 'div',
+                                                    children: [
+                                                        {
+                                                            tag: 'img',
+                                                            classList: 'weather-icon',
+                                                            attributes: [
+                                                                {
+                                                                    name: 'src',
+                                                                    value: pressureIcon,
+                                                                },
+                                                            ],
+                                                        },
+                                                    ],
+                                                },
+                                                {
+                                                    tag: 'div',
+                                                    content: `${currentWeather.main.pressure} hPa`,
+                                                },
+                                            ],
+                                        },
+                                        {
+                                            tag: 'div',
+                                            attributes: [
+                                                {
+                                                    name: 'title',
+                                                    value: 'Cloudiness',
+                                                },
+                                            ],
+                                            classList: 'main-list__item',
+                                            children: [
+                                                {
+                                                    tag: 'div',
+                                                    children: [
+                                                        {
+                                                            tag: 'img',
+                                                            classList: 'weather-icon',
+                                                            attributes: [
+                                                                {
+                                                                    name: 'src',
+                                                                    value: cloudsIcon,
+                                                                },
+                                                            ],
+                                                        },
+                                                    ],
+                                                },
+                                                {
+                                                    tag: 'div',
+                                                    content: `${currentWeather.clouds.all} %`,
+                                                },
+                                            ],
                                         },
                                     ],
-                                    classList: 'main-list__item',
-                                    content: `<i class="fas fa-water"></i> ${currentWeather.main.humidity} %`,
                                 },
-                            ],
-                        },
-                        {
-                            tag: 'div',
-                            classList: 'current-weather__weather-list',
-                            children: currentWeather.weather.map(weather => ({
-                                tag: 'div',
-                                classList: 'current-weather__weather-item',
-                                children: [
-                                    {
-                                        tag: 'img',
-                                        attributes: [
+                                {
+                                    tag: 'div',
+                                    classList: 'current-weather__weather-list',
+                                    children: currentWeather.weather.map(weather => ({
+                                        tag: 'div',
+                                        classList: 'current-weather__weather-item',
+                                        children: [
                                             {
-                                                name: 'src',
-                                                value: `http://openweathermap.org/img/wn/${weather.icon}@2x.png`,
+                                                tag: 'img',
+                                                attributes: [
+                                                    {
+                                                        name: 'src',
+                                                        value: `http://openweathermap.org/img/wn/${
+                                                            weather.icon
+                                                        }@2x.png`,
+                                                    },
+                                                ],
+                                            },
+                                            {
+                                                tag: 'div',
+                                                content: weather.description,
                                             },
                                         ],
-                                    },
-                                    {
-                                        tag: 'div',
-                                        content: weather.description,
-                                    },
-                                ],
-                            })),
+                                    })),
+                                },
+                            ],
                         },
                     ],
                 },
