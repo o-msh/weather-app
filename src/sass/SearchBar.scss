@@ -1,7 +1,5 @@
-@import './CurrentWeather';
-
 .search-bar {
-    padding-top: 15px;
+    padding: 15px 15px;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -23,7 +21,6 @@
 .search-bar__button:disabled {
     cursor: not-allowed;
     opacity: 0.4;
-    text-decoration: line-through;
 }
 
 .autocomplete {
@@ -34,7 +31,7 @@
 .autocomplete__input {
     padding: 10px;
     border-radius: 5px;
-    border: 2px solid #C9D0E1;
+    border: 2px solid #c9d0e1;
 }
 
 .autocomplete__input:focus {

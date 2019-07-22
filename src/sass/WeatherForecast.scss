@@ -1,0 +1,30 @@
+.weather-forecast {
+    @include weather-block;
+}
+
+.weather-forecast__container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+}
+
+.weather-forecast__title {
+    @include weather-title;
+}
+
+.forecast {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.forecast__item {
+    width: 20%;
+    margin: 10px 10px;
+    border-radius: 5px;
+    border: 1px solid #c9d0e1;
+    box-shadow: 0 0 10px #a08f8f;
+    padding: 10px;
+}

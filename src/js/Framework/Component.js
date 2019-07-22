@@ -6,7 +6,7 @@ export default class Component {
         this._render();
     }
 
-    init() { }
+    init() {}
 
     updateState(stateDelta, forceRender = true) {
         this.state = Object.assign({}, this.state, stateDelta);
@@ -15,7 +15,7 @@ export default class Component {
         }
     }
 
-    render() { }
+    render() {}
 
     _render() {
         this.host.innerHTML = '';
@@ -23,7 +23,8 @@ export default class Component {
         if (!Array.isArray(content)) {
             content = [content];
         }
-        content.map(item => this._vDomPrototypeElementToHtmlElement(item))
+        content
+            .map(item => this._vDomPrototypeElementToHtmlElement(item))
             .forEach(htmlElement => this.host.appendChild(htmlElement));
     }
 
@@ -58,10 +59,14 @@ export default class Component {
                         container.classList.add(...element.classList);
                     }
                     if (element.attributes) {
-                        element.attributes.forEach(attributeSpec => container.setAttribute(attributeSpec.name, attributeSpec.value));
+                        element.attributes.forEach(attributeSpec =>
+                            container.setAttribute(attributeSpec.name, attributeSpec.value),
+                        );
                     }
                     if (element.eventHandlers) {
-                        element.eventHandlers.forEach(eventHandler => container.addEventListener(eventHandler.type, eventHandler.handler));
+                        element.eventHandlers.forEach(eventHandler =>
+                            container.addEventListener(eventHandler.type, eventHandler.handler),
+                        );
                     }
                     if (element.children) {
                         element.children.forEach(item => {

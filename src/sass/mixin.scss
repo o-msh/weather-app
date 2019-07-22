@@ -1,0 +1,10 @@
+@mixin weather-block {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+}
+
+@mixin weather-title {
+    margin-top: 15px;
+    font-weight: 700;
+}
