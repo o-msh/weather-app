@@ -1,6 +1,10 @@
 import Component from '../../Framework/Component';
 import AppState from '../../Services/AppState';
 import { bindScope, getTransformedTime } from '../../utils';
+import humidityIcon from '../../../img/humidity.svg';
+import pressureIcon from '../../../img/pressure.svg';
+import temperatureIcon from '../../../img/temperature.svg';
+import cloudsIcon from '../../../img/clouds.svg';
 
 import weatherForecast from '../../../../../weather-forecast.json';
 
@@ -11,12 +15,17 @@ export default class WeatherForecast extends Component {
     }
 
     init() {
-        bindScope(this, ['updateMyself']);
+        bindScope(this, ['updateMyself', 'onForecastClick']);
         this.state = {};
     }
 
     updateMyself(subState) {
         this.updateState({ weatherForecast: subState });
+    }
+
+    onForecastClick({ target }) {
+        const forecastId = target.closest('.forecast__item').dataset.id;
+        AppState.update('CURRENTWEATHER', this.state.weatherForecast.list[forecastId]);
     }
 
     render() {
@@ -40,9 +49,21 @@ export default class WeatherForecast extends Component {
                                 {
                                     tag: 'div',
                                     classList: ['weather-forecast__list', 'forecast'],
-                                    children: weatherForecast.map(weather => ({
+                                    children: weatherForecast.map((weather, index) => ({
                                         tag: 'div',
                                         classList: 'forecast__item',
+                                        attributes: [
+                                            {
+                                                name: 'data-id',
+                                                value: index,
+                                            },
+                                        ],
+                                        eventHandlers: [
+                                            {
+                                                type: 'click',
+                                                handler: this.onForecastClick,
+                                            },
+                                        ],
                                         children: [
                                             {
                                                 tag: 'div',
@@ -51,7 +72,71 @@ export default class WeatherForecast extends Component {
                                             },
                                             {
                                                 tag: 'div',
-                                                content: weather.main.temp,
+                                                classList: 'forecast-item-container',
+                                                children: [
+                                                    {
+                                                        tag: 'div',
+                                                        classList: 'forecast-item__list',
+                                                        attributes: [
+                                                            {
+                                                                name: 'title',
+                                                                value: 'Temperature',
+                                                            },
+                                                        ],
+                                                        children: [
+                                                            {
+                                                                tag: 'div',
+                                                                children: [
+                                                                    {
+                                                                        tag: 'img',
+                                                                        classList: 'weather-icon',
+                                                                        attributes: [
+                                                                            {
+                                                                                name: 'src',
+                                                                                value: temperatureIcon,
+                                                                            },
+                                                                        ],
+                                                                    },
+                                                                ],
+                                                            },
+                                                            {
+                                                                tag: 'div',
+                                                                content: `${weather.main.temp.toFixed(1)} &#8451;`,
+                                                            },
+                                                        ],
+                                                    },
+                                                    {
+                                                        tag: 'div',
+                                                        classList: 'forecast-item__list',
+                                                        attributes: [
+                                                            {
+                                                                name: 'title',
+                                                                value: 'Humidity',
+                                                            },
+                                                        ],
+                                                        children: [
+                                                            {
+                                                                tag: 'div',
+                                                                children: [
+                                                                    {
+                                                                        tag: 'img',
+                                                                        classList: 'weather-icon',
+                                                                        attributes: [
+                                                                            {
+                                                                                name: 'src',
+                                                                                value: humidityIcon,
+                                                                            },
+                                                                        ],
+                                                                    },
+                                                                ],
+                                                            },
+                                                            {
+                                                                tag: 'div',
+                                                                content: `${weather.main.humidity} %`,
+                                                            },
+                                                        ],
+                                                    },
+                                                ],
                                             },
                                         ],
                                     })),

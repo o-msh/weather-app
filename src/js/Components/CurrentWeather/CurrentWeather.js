@@ -20,6 +20,7 @@ export default class CurrentWeather extends Component {
     }
 
     updateMyself(subState) {
+        console.log(subState);
         this.updateState({ currentWeather: subState });
     }
 
