@@ -1,12 +1,8 @@
 import Component from '../../Framework/Component';
 import AppState from '../../Services/AppState';
 import { bindScope, getTransformedTime } from '../../utils';
-import humidityIcon from '../../../img/humidity.svg';
-import pressureIcon from '../../../img/pressure.svg';
 import temperatureIcon from '../../../img/temperature.svg';
 import cloudsIcon from '../../../img/clouds.svg';
-
-import weatherForecast from '../../../../../weather-forecast.json';
 
 export default class WeatherForecast extends Component {
     constructor(host, props) {
@@ -29,7 +25,6 @@ export default class WeatherForecast extends Component {
     }
 
     render() {
-        // this.state.weatherForecast = weatherForecast;
         if (this.state.weatherForecast) {
             const { list: weatherForecast } = this.state.weatherForecast;
             return [
@@ -111,7 +106,7 @@ export default class WeatherForecast extends Component {
                                                         attributes: [
                                                             {
                                                                 name: 'title',
-                                                                value: 'Humidity',
+                                                                value: 'Cloudiness',
                                                             },
                                                         ],
                                                         children: [
@@ -124,7 +119,7 @@ export default class WeatherForecast extends Component {
                                                                         attributes: [
                                                                             {
                                                                                 name: 'src',
-                                                                                value: humidityIcon,
+                                                                                value: cloudsIcon,
                                                                             },
                                                                         ],
                                                                     },
