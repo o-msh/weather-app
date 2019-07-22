@@ -44,13 +44,17 @@ export default class WeatherForecast extends Component {
                                 {
                                     tag: 'div',
                                     classList: ['weather-forecast__list', 'forecast'],
-                                    children: weatherForecast.map((weather, index) => ({
+                                    children: weatherForecast.map((item, index) => ({
                                         tag: 'div',
                                         classList: 'forecast__item',
                                         attributes: [
                                             {
                                                 name: 'data-id',
                                                 value: index,
+                                            },
+                                            {
+                                                name: 'title',
+                                                value: 'Click to show more details',
                                             },
                                         ],
                                         eventHandlers: [
@@ -63,7 +67,7 @@ export default class WeatherForecast extends Component {
                                             {
                                                 tag: 'div',
                                                 classList: 'forecast-item__time',
-                                                content: getTransformedTime(weather.dt),
+                                                content: getTransformedTime(item.dt),
                                             },
                                             {
                                                 tag: 'div',
@@ -72,12 +76,6 @@ export default class WeatherForecast extends Component {
                                                     {
                                                         tag: 'div',
                                                         classList: 'forecast-item__list',
-                                                        attributes: [
-                                                            {
-                                                                name: 'title',
-                                                                value: 'Temperature',
-                                                            },
-                                                        ],
                                                         children: [
                                                             {
                                                                 tag: 'div',
@@ -96,19 +94,13 @@ export default class WeatherForecast extends Component {
                                                             },
                                                             {
                                                                 tag: 'div',
-                                                                content: `${weather.main.temp.toFixed(1)} &#8451;`,
+                                                                content: `${item.main.temp.toFixed(1)} &#8451;`,
                                                             },
                                                         ],
                                                     },
                                                     {
                                                         tag: 'div',
                                                         classList: 'forecast-item__list',
-                                                        attributes: [
-                                                            {
-                                                                name: 'title',
-                                                                value: 'Cloudiness',
-                                                            },
-                                                        ],
                                                         children: [
                                                             {
                                                                 tag: 'div',
@@ -127,9 +119,23 @@ export default class WeatherForecast extends Component {
                                                             },
                                                             {
                                                                 tag: 'div',
-                                                                content: `${weather.main.humidity} %`,
+                                                                content: `${item.main.humidity} %`,
                                                             },
                                                         ],
+                                                    },
+                                                    {
+                                                        tag: 'div',
+                                                        children: item.weather.map(weather => ({
+                                                            tag: 'img',
+                                                            attributes: [
+                                                                {
+                                                                    name: 'src',
+                                                                    value: `http://openweathermap.org/img/wn/${
+                                                                        weather.icon
+                                                                    }@2x.png`,
+                                                                },
+                                                            ],
+                                                        })),
                                                     },
                                                 ],
                                             },
