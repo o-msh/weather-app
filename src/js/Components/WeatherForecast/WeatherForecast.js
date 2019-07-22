@@ -122,7 +122,7 @@ export default class WeatherForecast extends Component {
                                                             },
                                                             {
                                                                 tag: 'div',
-                                                                content: `${item.main.humidity} %`,
+                                                                content: `${item.clouds.all} %`,
                                                             },
                                                         ],
                                                     },

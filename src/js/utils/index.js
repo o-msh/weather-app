@@ -22,10 +22,6 @@ export const debounce = (fn, time) => {
 
 export const getTransformedTime = timestamp => {
     return new Intl.DateTimeFormat('default', {
-        year: 'numeric',
-        month: 'numeric',
-        day: 'numeric',
-        day: '2-digit',
         hour: '2-digit',
         minute: '2-digit',
     }).format(new Date(timestamp * 1000));

@@ -16,8 +16,8 @@
 
 .forecast {
     display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
+    max-width: 900px;
+    overflow-y: auto;
 }
 
 .forecast__item {
@@ -42,7 +42,7 @@
 }
 
 .forecast-item__list > div {
-    padding: 5px;
+    padding: 3px;
 }
 
 .forecast-item-container {
