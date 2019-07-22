@@ -4,6 +4,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .search-bar__button {
@@ -29,6 +30,7 @@
 }
 
 .autocomplete__input {
+    width: 85%;
     padding: 10px;
     border-radius: 5px;
     border: 2px solid #c9d0e1;

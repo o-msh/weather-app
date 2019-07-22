@@ -4,6 +4,8 @@ import { bindScope, getTransformedTime } from '../../utils';
 import temperatureIcon from '../../../img/temperature.svg';
 import cloudsIcon from '../../../img/clouds.svg';
 
+import weatherForecast from '../../../../../weather-forecast.json';
+
 export default class WeatherForecast extends Component {
     constructor(host, props) {
         super(host, props);
@@ -25,6 +27,7 @@ export default class WeatherForecast extends Component {
     }
 
     render() {
+        this.state.weatherForecast = weatherForecast;
         if (this.state.weatherForecast) {
             const { list: weatherForecast } = this.state.weatherForecast;
             return [
@@ -126,13 +129,27 @@ export default class WeatherForecast extends Component {
                                                     {
                                                         tag: 'div',
                                                         children: item.weather.map(weather => ({
-                                                            tag: 'img',
-                                                            attributes: [
+                                                            tag: 'div',
+                                                            children: [
                                                                 {
-                                                                    name: 'src',
-                                                                    value: `http://openweathermap.org/img/wn/${
-                                                                        weather.icon
-                                                                    }@2x.png`,
+                                                                    tag: 'div',
+                                                                    children: [
+                                                                        {
+                                                                            tag: 'img',
+                                                                            attributes: [
+                                                                                {
+                                                                                    name: 'src',
+                                                                                    value: `http://openweathermap.org/img/wn/${
+                                                                                        weather.icon
+                                                                                    }@2x.png`,
+                                                                                },
+                                                                            ],
+                                                                        },
+                                                                    ],
+                                                                },
+                                                                {
+                                                                    tag: 'div',
+                                                                    content: weather.description,
                                                                 },
                                                             ],
                                                         })),
