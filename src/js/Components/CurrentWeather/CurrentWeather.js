@@ -5,6 +5,7 @@ import humidityIcon from '../../../img/humidity.svg';
 import pressureIcon from '../../../img/pressure.svg';
 import temperatureIcon from '../../../img/temperature.svg';
 import cloudsIcon from '../../../img/clouds.svg';
+import windIcon from '../../../img/wind.svg';
 
 export default class CurrentWeather extends Component {
     constructor(host, props) {
@@ -167,6 +168,37 @@ export default class CurrentWeather extends Component {
                                                         {
                                                             tag: 'div',
                                                             content: `${currentWeather.clouds.all} %`,
+                                                        },
+                                                    ],
+                                                },
+                                                {
+                                                    tag: 'div',
+                                                    attributes: [
+                                                        {
+                                                            name: 'title',
+                                                            value: 'Speed of wind',
+                                                        },
+                                                    ],
+                                                    classList: 'main-list__item',
+                                                    children: [
+                                                        {
+                                                            tag: 'div',
+                                                            children: [
+                                                                {
+                                                                    tag: 'img',
+                                                                    classList: 'weather-icon',
+                                                                    attributes: [
+                                                                        {
+                                                                            name: 'src',
+                                                                            value: windIcon,
+                                                                        },
+                                                                    ],
+                                                                },
+                                                            ],
+                                                        },
+                                                        {
+                                                            tag: 'div',
+                                                            content: `${currentWeather.wind.speed} m/s`,
                                                         },
                                                     ],
                                                 },
