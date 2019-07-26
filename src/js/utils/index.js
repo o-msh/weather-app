@@ -26,3 +26,11 @@ export const getTransformedTime = timestamp => {
         minute: '2-digit',
     }).format(new Date(timestamp * 1000));
 };
+
+export const getTransformedDate = timestamp => {
+    return new Intl.DateTimeFormat('default', {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric',
+    }).format(new Date(timestamp * 1000));
+};
