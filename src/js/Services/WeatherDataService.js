@@ -58,7 +58,7 @@ class WeatherDataService {
                 AppState.update('LOADERSPINNERTOGGLE', {
                     showLoader: false,
                 });
-                AppState.update('AUTOCOMPLETELIST', response);
+                AppState.update('AUTOCOMPLETELIST', response ? response : []);
             });
         } else {
             AppState.update('AUTOCOMPLETELIST', []);
