@@ -16,16 +16,26 @@
 
 .forecast {
     display: flex;
-    max-width: 900px;
+    flex-direction: row;
+    padding: 10px;
     overflow-y: auto;
+}
+
+.forecast-group {
+    display: flex;
+}
+
+.forecast__date {
+    padding: 0px 10px;
+    line-height: 250px;
+    text-decoration: underline;
 }
 
 .forecast__item {
     font-size: 13px;
-    width: 15%;
     margin: 10px 10px;
-    border-radius: 5px;
     border: 1px solid #c9d0e1;
+    border-radius: 5px;
     box-shadow: 0 0 10px #dac6c6;
     padding: 10px;
 }
