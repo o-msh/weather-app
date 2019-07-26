@@ -19,6 +19,7 @@ class WeatherDataService {
 
     async fetchData(props) {
         try {
+            AppState.update('ERROR', { error: '' });
             const response = await fetch(props.url);
             if (!response.ok) {
                 throw new Error(response.statusText);
@@ -26,7 +27,7 @@ class WeatherDataService {
             const responseData = await response.json();
             return responseData;
         } catch (error) {
-            console.log('Catched error:', error.message);
+            AppState.update('ERROR', { error });
         }
     }
 
