@@ -6,6 +6,8 @@ import pressureIcon from '../../../img/pressure.svg';
 import temperatureIcon from '../../../img/temperature.svg';
 import cloudsIcon from '../../../img/clouds.svg';
 
+import currentWeather from '../../../../../current-weather.json';
+
 export default class CurrentWeather extends Component {
     constructor(host, props) {
         super(host, props);
