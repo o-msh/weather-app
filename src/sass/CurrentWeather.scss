@@ -14,10 +14,18 @@
     @include weather-title;
 }
 
+.current-weather__block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
 .main-list {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    width: 50%;
 }
 
 .main-list__item {
