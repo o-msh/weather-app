@@ -1,0 +1,52 @@
+.current-weather {
+    @include weather-block;
+}
+
+.current-weather__container {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    width: 100%;
+    font-weight: 600;
+}
+
+.current-weather__title {
+    @include weather-title;
+}
+
+.current-weather__block {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.main-list {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 50%;
+}
+
+.main-list__item {
+    padding: 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.main-list__item > div {
+    margin: 5px;
+}
+
+.weather-icon {
+    width: 30px;
+}
+
+.current-weather__weather-item {
+    padding: 15px;
+    margin: 15px;
+    border-radius: 10%;
+    border: 1px solid #c9cbd6;
+    text-align: center;
+}

@@ -1,0 +1,19 @@
+@import 'normalize';
+@import 'mixin';
+@import './SearchBar';
+@import './Error';
+@import './CurrentWeather';
+@import './WeatherForecast';
+@import './media';
+
+body {
+    color: #757883;
+}
+
+.app {
+    margin: 10px auto;
+    max-width: 900px;
+    border-radius: 20px;
+    border: 1px solid #c9d0e1;
+    background-color: rgb(247, 250, 253);
+}

@@ -11,12 +11,18 @@
         "prebuild-dev": "shx rm -rf dist/",
         "build-dev": "parcel build ./src/index.html --no-minify --public-url ./",
         "prebuild": "shx rm -rf dist/",
-        "build": "parcel build ./src/index.html --public-url ./",
+        "build": "parcel build ./src/index.html --public-url ./ --no-cache --no-source-maps",
         "publish": "push-dir --dir=dist --branch=gh-pages --cleanup"
     },
     "devDependencies": {
+        "babel-polyfill": "^6.26.0",
         "parcel": "^1.12.2",
         "push-dir": "^0.4.1",
+        "sass": "^1.17.4",
         "shx": "^0.3.2"
+    },
+    "dependencies": {
+        "core-js": "3",
+        "font-awesome.css": "^4.7.2"
     }
 }
