@@ -1,4 +1,4 @@
-# weather-app
+## [weather-app](http://o-msh.github.io/weather-app)
 
 Application for getting the current weather and forecast for couple days.
 
